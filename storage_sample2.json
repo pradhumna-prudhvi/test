@@ -1,0 +1,53 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+
+        "storageaccnt4_sku_name": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+
+                "Standard_LRS",
+                "Standard_ZRS",
+                "Standard_GRS",
+                "Premium_LRS"
+            ],
+            "metadata": {
+                "description": "storageaccnt4_sku_name"
+            }
+        },
+
+        "storageaccnt4_sku_tier": {
+            "type": "string",
+            "defaultValue": "Standard",
+            "allowedValues": [
+                "Standard",
+                "Premium"
+            ],
+            "metadata": {
+                "description": "storageaccnt4_sku_tier"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+
+        {
+            "name": "storageaccnt4",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-04-01",
+            "tags": {
+                "displayName": "storageaccount1"
+            },
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "[parameters('storageaccnt4_sku_name')]",
+                "tier": "[parameters('storageaccnt4_sku_tier')]"
+            }
+        }
+    ],
+    "outputs": {}
+}
